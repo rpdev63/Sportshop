@@ -1,0 +1,144 @@
+/*----------------------Backoffice Formulaire: add Article-------------------*/
+
+.form-add {
+    width: 700px;
+    height: 820px;
+    margin: 100px 45px 0px 45px;
+    padding: 50px 30px;
+    border: 1px solid rgba(245, 245, 245, 0.4);
+}
+
+.form-add label {
+    color: silver;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.form-add input,
+.form-add textarea {
+    padding: 5px 5px;
+}
+
+.form-add input:focus,
+.form-add textarea:hover {
+    box-shadow: 0 0 5px 2px gold, 0 0 16px 8px silver;
+    outline: 0;
+    border: none;
+}
+
+.form-add div {
+    margin: 5px 0;
+}
+
+.form-add div:nth-child(3) {
+    display: flex;
+}
+
+.form-add form div ul li {
+    list-style: none;
+    color: red;
+    font-size: 0.8em;
+}
+
+.form-add.category {
+    height: 250px;
+}
+
+.form-add form div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*----------------------Backoffice Formulaire: add Categorie-------------------*/
+
+.form-add.cat {
+    height: 390px;
+}
+
+.form-add.cat #bo_categories_enabled {
+    position: relative;
+    bottom: 25px;
+    right: 30px;
+}
+
+.form-add.cat form div:nth-child(3) {
+    margin-top: 20px;
+}
+
+.form-add.marque {
+    height: 300px;
+}
+
+
+/*----------------------Backoffice Formulaire: add Article-------------------*/
+
+.form-add.art {
+    min-height: 900px;
+    width: 800px;
+}
+
+.form-add.art form div:nth-child(8) {
+    color: blue;
+}
+
+#article_category {}
+
+label {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+#contact,
+#product,
+form {
+    max-width: 500px;
+}
+
+#contact div,
+#product div,
+.form-group div {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.form-group:first-child div {
+    display: block;
+}
+
+.form-group:first-child div label {
+    margin-right: 20px;
+    margin-left: 5px;
+}
+
+#contact_save,
+#product_save {
+    width: 40px;
+    margin-top: 30px;
+}
+
+.form-control {
+    padding: 5px 2px;
+    border: 4px solid #A9B8F5;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 2px 3px #F1B0D1;
+    outline: 0;
+}
+
+#form_save {
+    padding: 5px 8px;
+    font-size: 1.5rem;
+    border: 4px solid #A9B8F5;
+    border-radius: 20%;
+    background-color: white;
+}
+
+#form_save:hover {
+    background-color: #A9B8F5;
+    color: #F1B0D1;
+    font-weight: 700;
+}

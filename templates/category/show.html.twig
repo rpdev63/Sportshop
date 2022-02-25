@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{pageTitle}}
+{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/table.css') }} ">
+{% endblock %}
+
+{% block body %}
+    
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ category.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ category.description }}</td>
+            </tr>
+            <tr>
+                <th>Actif ?</th>
+                <td>{{ category.isSet ? 'Yes' : 'No' }}</td>
+            </tr>
+            
+            <tr>
+            <th> Catégorie(s) </th>
+            <td>
+                {% for article in category.articles %}
+                    {{article.name}} <br>
+                {% endfor %}
+            </td>
+            </tr>             
+        </tbody>
+    </table>
+    <div class="btn-box">
+		<a href="{{ path('category_edit', {'id': category.id}) }}">
+			<button class="btn-style back-office">Modifier</button>
+		</a>
+	</div>
+	<div class="back">
+		<a href="{{path('category')}}">Retourner vers la liste des catégories</a>
+	</div>
+
+    
+    
+
+    
+{% endblock %}

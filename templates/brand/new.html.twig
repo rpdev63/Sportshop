@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{pageTitle}}{% endblock %}
+{% block body %}
+    {{ include('brand/_form.html.twig') }}
+		<a href="{{ path('brand') }}">Retourner à la liste des marques</a>
+	</div>    
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{pageTitle}}
+{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/table.css') }} ">
+{% endblock %}
+{% block body %}
+<h1>Brand index</h1>
+    
+
+    <table class="table marque">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Article(s)<th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for brand in brands %}
+            <tr>
+                <td>{{ brand.id }}</td>
+                <td>{{ brand.name }}</td>
+                <td> {% for article in brand.getArticles() %}                
+                {{ article.name}}
+                {% endfor %}
+                <td>
+                <td>
+                    <a href="{{ path('brand_show', {'id': brand.id}) }}">Voir</a>
+                    <a href="{{ path('brand_edit', {'id': brand.id}) }}">Modifier</a>
+                    <a href="{{ path('brand_delete', {'id': brand.id}) }}">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="btn-box">
+		<a href="{{ path('brand_new') }}">
+			<button class="btn-style back-office">Ajouter une marque</button>
+		</a>
+	</div>
+
+
+    
+{% endblock %}

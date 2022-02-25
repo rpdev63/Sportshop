@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}
+{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/table.css') }} ">{% endblock  %}
+{% block body %}
+	
+	<table class="table">
+		<thead>
+			<th>ID</th>
+			<th>Email</th>
+			<th>Rôles</th>
+			<th>Prénom</th>
+			<th>Nom</th>
+			<th>Actions</th>
+		</thead>
+		<tbody>
+			{# Boucle sur les utilisateurs #}
+			{% for user in users %}
+				<tr>
+					<td>{{user.id}}</td>
+					<td>{{user.email}}</td>
+					<td>
+						{# Boucle sur les rôles #}
+						{% for role in user.roles %}
+							{% if role == "ROLE_USER" %}
+								<p>Utilisateur </p>
+							{% elseif role == "ROLE_EDITOR" %}
+								<p>Editeur</p>
+							{% elseif role == "ROLE_ADMIN"%}
+								<p>Administrateur<p>
+							{% endif %}
+						{% endfor %}
+
+					</td>
+					<td>prenom</td>
+					<td>nom</td>
+					<td>
+						<a href="{{ path('user_edit', {'id':user.id } ) }}">Modifier</a>
+					</td>
+
+				</tr>
+
+			{% else %}
+				<p>Aucun utilisateur inscrit
+				</p>
+			{% endfor %}
+		</tbody>
+	</table>
+    
+{% endblock %}

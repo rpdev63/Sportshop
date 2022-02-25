@@ -5,15 +5,131 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        <link rel="stylesheet" href="{{ asset('css/navbar.css') }} ">
+		<link rel="stylesheet" href="{{ asset('css/style.css') }} "> 
+		<link rel="stylesheet" href="{{ asset('css/form.css') }} "> 
+        {% block stylesheets %}{% endblock %}        
     </head>
     <body>
+        {% block navbar %}
+				<header id="header">
+					<li class="deroulant">
+						<a id="menu">Menu &ensp;</a>
+						<ul class="dropdown">
+							<li>
+								<a href="{{asset('home')}}">Accueil</a>
+							</li>
+
+							<li>
+								<a href="{{asset('catalogue')}}">Nos articles</a>
+							</li>
+							<li>
+							{% if is_granted('ROLE_ADMIN') %}
+								<a href="{{asset('article')}}">Backoffice</a>
+							</li>
+							{% endif %}
+							<li>
+							{% if is_granted('ROLE_USER') %}
+								<a href="{{asset('sav')}}">Nous contacter</a>
+							</li>
+							{% endif %}
+							{% if (app.user == false) %}
+								<li>
+									<a href="{{asset('login')}}">Connexion</a>
+								</li>
+							{% endif %}
+							{% if app.user %}
+								<li>
+									<a href="{{asset('account')}}">Ma fiche</a>
+								</li>
+							{% endif %}
+							{% if is_granted('ROLE_USER') %}
+								<li>
+									<a href="{{ path('app_logout') }}">Déconnexion</a>
+								</li>
+							{% endif %}
+						</ul>
+					</li>
+
+					<div id="toggle"></div>
+
+					<div id="navbar">
+
+						<ul>
+							{% if title == 'Home'  %}
+								<li>
+									<a href="{{asset('home')}}">Accueil</a>
+								</li>
+								<li>
+									<a href="{{asset('cgv')}}">CGV</a>
+								</li>
+								<li>
+									<a href="{{asset('mentions')}}">Mentions</a>
+								</li>
+								<li>
+									<a href="{{asset('politiques')}}">Politiques de confidentialités</a>
+								</li>
+
+							{% elseif title == 'connexion'  %}
+								<li>
+									<a href="{{asset('login')}}">Connexion</a>
+								</li>
+								<li>
+									<a href="{{asset('register')}}">Inscription</a>
+								</li>
+							{% elseif title == 'Back Office'  %}								
+								<li>
+									<a href="{{asset('article')}}">Gérer les articles</a>
+								</li>
+								<li>
+									<a href="{{asset('category')}}">Gérer les catégories</a>
+								</li>
+								<li>
+									<a href="{{asset('brand')}}">Gérer les marques</a>
+								</li>
+								<li>
+									<a href="{{asset('user')}}">Gérer les utilisateurs</a>
+								</li>
+							{% elseif title == 'Articles'  %}
+								{% for category in categories  %}
+									{% if category.isSet %}
+										<li>
+										<a href="">{{category.name}}</a>
+									</li>
+									{% endif %}
+									
+								{% endfor %}
+							{% elseif title == 'Fiche article'  %}
+
+								<li>
+									<a href="">Fiche article</a>
+								</li>
+							{% elseif title == 'Mon Compte'  %}
+
+								<li>
+									<a href="{{asset('account')}}">Mes infos</a>
+								</li>
+								<li>
+									<a href="{{asset('panierUser')}}">Mon panier</a>
+								</li>
+							{% else %}
+								<li>
+									</li>
+
+							{% endif %}
+						</ul>
+						<script src="{{ asset('js/navbar.js') }} "></script>
+					</div>
+				</header>
+			
+			
+		{% endblock %}
+		<div class="main-container">
         {% block body %}{% endblock %}
+		</div>
+        {% block javascripts %}{% endblock %}
+		{% block footer %}
+		<footer><br><p>Copyright © Rémi Prince 2021</p></footer>
+		{% endblock %}
     </body>
 </html>

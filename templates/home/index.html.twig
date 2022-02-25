@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	
+
+		<h2>Bienvenue sur Sportshop</h2>
+		{% if app.user %}
+
+			<p style='color : {{app.user.favColor}}'>
+				vous êtes connecté, votre password est {{app.user.password}}
+
+			</p>
+
+
+		{% endif %}
+		{% if is_granted('ROLE_USER') %}
+                    <p>Vous êtes un utilisateur classique </p>
+                    {% else %}
+                     <p>Vous n'avez pas le rôle utilisateur</p>
+        {% endif %}
+		{% if is_granted('ROLE_ADMIN') %}
+                    <p>Vous êtes un administrateur </p>
+                    {% else %}
+                     <p>Vous n'êtes pas administrateur</p>
+        {% endif %}
+
+        {{ dump(app.session)}}
+		
+		
+	
+{% endblock %}
+

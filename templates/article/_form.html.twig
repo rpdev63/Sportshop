@@ -1,0 +1,9 @@
+<div class="form-add art">
+        {# on désactive la validation automatique de l'html#}
+		{{ form_start(form, {'attr' : {'novalidate' : 'novalidate'}}) }} 
+		{#{{ form_row(form.categories,{'attr' : {'class' : 'cat-field' }})  }}#}
+        {{form_rest(form)}}
+		<button style="margin-top:20px" type="submit" class="btn-style">Valider</button>
+		{{form_end(form)}}
+</div>
+

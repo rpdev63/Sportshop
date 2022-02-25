@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{pageTitle}}{% endblock %}
+{% block body %}
+
+    {{ include('article/_form.html.twig') }}
+	<div class="back">
+		<a href="{{ path('article') }}"> Retourner à la liste d'articles</a>
+	</div>    
+{% endblock %}

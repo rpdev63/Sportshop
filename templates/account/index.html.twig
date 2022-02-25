@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{pageTitle}}
+{% endblock %}
+
+{% block body %}
+	
+		<div class="connexion fiche" style=" border-color : {{app.user.favColor}}">
+			<h1>{{pageTitle}}</h1>
+			<br>
+			<p>
+				<span>
+					Prénom</span>
+				:
+				{{app.user.firstName}}</p>
+			<br>
+			<p>
+				<span>
+					Nom</span>
+				:
+				{{app.user.lastName}}
+			</p>
+			<br>
+			<p>
+				<span>
+					Mail</span>
+				:
+				{{app.user.email}}
+			</p>
+			<br>
+			<p>
+				<form method="POST" action="{{path('changeFavColor')}}">
+				<span>Thème :</span>
+				<input name="color" class="color" type="color" value="{{app.user.favColor}}">
+				<button type='submit'>Changer le thême </button>
+				
+			</p>
+			
+			</p>
+		</div>
+	
+{% endblock %}

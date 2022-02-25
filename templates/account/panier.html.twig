@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/table.css') }} ">{% endblock  %}
+
+{% block body %}
+    
+    {% if panier %}
+        
+        <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Articles</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                <td>{{ panier.date ? panier.date|date('Y-m-d') : '' }}</td>
+                {% for article in panier.articles %}
+                <td>{{article.name}} <br></td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    {% else %}
+        <p>Votre panier est vide.</p>
+    {% endif %}
+{% endblock %}

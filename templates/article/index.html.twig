@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/table.css') }} ">{% endblock  %}
+
+{% block body %}
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Reference</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Prix barré</th>
+                    <th>Note</th>
+                    <th>Nouveau</th>                    
+                    <th>Catégorie(s)</th>
+                    <th>Marque</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                <tr>
+                    <td>{{ article.id }}</td>
+                    <td>{{ article.name }}</td>
+                    <td>{{ article.reference }}</td>
+                    <td>{{ article.description }}</td>
+                    <td>{{ article.price }}</td>
+                    <td>{{ article.oldPrice }}</td>
+                    <td>{{ article.rate }}</td>
+                    <td>{{ article.isNew ? 'Yes' : 'No' }}</td>   
+                    <td>
+                    {% for category in article.categories %}
+                        {{category.name}}
+                    {% endfor %}
+                    </td>             
+                    <td>{{ article.brand.name }}</td>
+                    <td>                    
+                        <a href="{{ path('article_show', {'id': article.id}) }}">Voir</a>
+                        <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                        <a href="{{ path('article_delete', {'id': article.id}) }}">Supprimer</a>
+                        
+
+                    </td>
+                </tr>
+                 {% else %}
+                <tr>
+                    <td colspan="10">Aucune donnée</td>
+                </tr>
+                {% endfor %}
+               
+            </tbody>
+        </table>
+
+        <div class="btn-box">
+		    <a href="{{ path('article_new') }}">
+			    <button class="btn-style back-office">Ajouter un article</button>
+		    </a>
+		    <a href="">
+			    <button class="btn-style back-office">Exporter au format csv</button>
+		    </a>
+
+	    </div>
+    
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{pageTitle}}
+{% endblock %}
+
+{% block body %}
+	<div class="articles">
+		{% for article in articles %}
+			<div class="article">
+
+
+				<div class="article-new" {% if (article.getIsNew()) %} style="opacity:1" {% endif %}>
+					<p id="new">new</p>
+				</div>
+
+
+				<div class="article-header">
+					<p>
+						{{ article.getName()}}
+					</p><br>
+				</div>
+				<div class="article-img">
+					<img id="article-img" src="uploads/img/{{article.getImg()}}" alt="Image non disponible"/>
+				</div>
+				<div class="article-info">
+					<div>
+						Note :
+						{{ article.getRate()}}
+						/ 5
+					</div>
+					<div class="article-price">
+						<span style="text-decoration: line-through;">
+							{{ article.getOldPrice()  }}
+							€</span>
+						<span style="font-weight : bold">
+							{{ article.getPrice()  }}
+							€</span>
+					</div>
+					<p class="seeMore">
+						<a href="{{path('detail', {id: article.getId()})}}">Voir le détail</a>
+					</p>
+					<p>
+						<i class='bx bx-basket'></i>
+						<a href="{{path('addArticle', {id: article.getId()})}}" class="btn-add">Ajouter au panier</a>
+					</p>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

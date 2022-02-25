@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/table.css') }} ">{% endblock  %}
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Commune</th>
+                <th>CP</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for commune in communes %}
+            <tr>
+                <td>{{ commune.nom }}</td>
+                <td>{% for codePostal in commune.codesPostaux %}
+                    {{codePostal}} <br>
+                    {% endfor %}
+                </td>
+            </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

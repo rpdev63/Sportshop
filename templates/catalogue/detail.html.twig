@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{pageTitle}}
+{% endblock %}
+
+{% block body %}
+	
+		<div class="article detail">
+			<div class="article-new" {% if (article.getIsNew()) %} style="opacity:1" {% endif %}>
+				<p id="new">new</p>
+			</div>
+
+
+			<div class="article-header">
+				<p>
+					{{ article.getName()}}
+				</p><br>
+			</div>
+			<div class="article-img">
+				<img id="article-img" src="../uploads/img/{{article.getImg()}}" alt="Image non disponible"/>
+			</div>
+			<div class="article-info">
+				<div>
+					Note :
+					{{ article.getRate()}}
+					/ 5
+				</div>
+				<div class="article-price">
+					<span style="text-decoration: line-through;">
+						{{ article.getOldPrice()  }}
+						€</span>
+					<span style="font-weight : bold">
+						{{ article.getPrice()  }}
+						€</span>
+				</div>
+				<p>
+					<i class='bx bx-basket'></i>
+					<a class="btn-add">Ajouter au panier</a>
+				</p>
+			</div>
+		</div>
+		{#<div class="btn-box">
+			<a href="{{path('export_pdf',{id: article.getId()})}}">
+				<button class="btn-style back-office">Exporter au format pdf</button>
+			</a>
+		</div>#}
+		<div class="back">
+			<a href="{{path('catalogue')}}">Retourner vers la liste d'articles</a>
+		</div>
+	
+
+{% endblock %}

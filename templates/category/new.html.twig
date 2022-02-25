@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{pageTitle}}{% endblock %}
+{% block body %}
+    {{ include('category/_form.html.twig') }}
+		<a href="{{ path('category') }}">Retourner à la liste des catégories</a>
+	</div>    
+{% endblock %}
